@@ -7,4 +7,5 @@ class Workspace
     @users = []
     @channels = []
   end
+
 end
