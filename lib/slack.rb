@@ -17,20 +17,16 @@ def main
   print "\nChoice:"
   user_answer = gets.chomp.downcase
 
-  #while user_answer != "quit"
     case user_answer
     when "list users"
-      pp #create method for list_users
+      pp #call the method
     when "list channels"
-      pp #create method for list_channels
+      #pp #call method
     when "quit"
       exit
     end
-  #   exit
-  # end
-  puts "Thank you for using the Ada Slack"
 
-  # case or if/else statement ?"
+  puts "Thank you for using the Ada Slack"
 
 end
 

@@ -17,7 +17,30 @@ class User < Recipient
 
   end
 
-  def self.list 
+  def list_users
+    #verify slack token is working
+    url = "https://slack.com/api/users.list"
+    query_paramaters = {
+        token: ENV['SLACK_TOKEN']
+    }
+    response = HTTParty.get(url, query: query_paramaters)
 
-  end
+    real_names = []
+
+    response["members"].each do |member|
+      user_info= {
+          "username" => member["name"],
+          "real_name" => member["real_name"],
+          "slack_id" => member["id"]
+      }
+
+      real_names << User.new(user_info)
+    end
+
+    return real_names
+
+    end
+
 end
+
+

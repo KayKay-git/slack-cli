@@ -14,9 +14,21 @@ class Recipient
 
   #also methods to send http request, lists, sending messsages, getting details ?
 
-  def self.list
+  # private
+  #
+  # def self.get(url, query_paramaters)
+  #   url = url
+  #   query_paramaters = {
+  #       token: ENV['SLACK_TOKEN']
+  #   }
+  #   return HTTParty.get(url, query: query_paramaters)
+  #
+  # end
 
-  end
 
 
+#   def self.list
+#
+#   end
+#
 end

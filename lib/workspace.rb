@@ -4,7 +4,7 @@ class Workspace
   attr_reader :users, :channels
 
   def initialize
-    @users = []
+    @users = list.users
     @channels = []
   end
 
