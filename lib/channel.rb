@@ -18,4 +18,24 @@ class Channel < Recipient
 
   end
 
+  def self.list
+
+    response = self.get("https://slack.com/api/conversations.list")
+
+    user_info_array = []
+
+    response["channels"].each do |channel|
+      sleep(0.5)
+      name = channel["name"]
+      slack_id = channel["id"]
+      topic = channel["purpose"]["value"]
+      member_count = channel["num_members"]
+
+
+      user_info_array << Channel.new(name, slack_id, topic, member_count )
+    end
+
+    return user_info_array
+  end
+
 end
