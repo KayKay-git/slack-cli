@@ -21,16 +21,29 @@ class User < Recipient
     user_info_array = []
 
     response["members"].each do |member|
-      sleep(0.5)
+      #sleep(0.5)
       username = member["name"]
       real_name = member["real_name"]
       slack_id = member["id"]
 
-      user_info_array << User.new(username, real_name, slack_id )
+      user_info_array << User.new(username, slack_id, real_name )
     end
 
-    return user_info_array
+    return  user_info_array
   end
-end
 
-User.list
+  def user_details
+      #sleep(0.5)
+      # puts "Name: #{member["name"]}"
+      # puts "Real name: #{member["real_name"]}"
+      # puts "ID: #{ member["id"]}"
+
+      return {"ID"=> @slack_id, "Name" => @name, "Real Name" => @real_name}
+
+    end
+end
+#
+# lisa = User.new("sfhjdhf", "31212", "lisa matt")
+# pp lisa.user_details
+
+ap User.list
