@@ -17,21 +17,27 @@ class Workspace
   #also methods to send http request, lists, sending messsages, getting details ?
 
   def select_user(user_name_or_id)
-    #self.validate_id(id)?
     @selected = @users.find do |user|
-
       valid_users = [user.name, user.slack_id, user.real_name]
       valid_users.include?(user_name_or_id)
     end
 
     if @selected == nil
-      raise ArgumentError, "That user could not be found."
+      raise ArgumentError, "The user could not be found."
+    end
+  end
+
+  def select_channel(name_or_id)
+    @selected = @channels.find { |channel| [channel.name, channel.slack_id].include?(name_or_id) }
+
+    if @selected == nil
+      raise ArgumentError, "That channel could not be found."
     end
   end
 
   def details
     if @selected != nil
-      return @selected.user_details
+      return @selected.details
     else
       raise ArgumentError, "Please choose a user or channel"
     end

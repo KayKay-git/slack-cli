@@ -32,15 +32,10 @@ class User < Recipient
     return  user_info_array
   end
 
-  def user_details
-      #sleep(0.5)
-      # puts "Name: #{member["name"]}"
-      # puts "Real name: #{member["real_name"]}"
-      # puts "ID: #{ member["id"]}"
+  def details
+    return {"ID"=> @slack_id, "Name" => @name, "Real Name" => @real_name}
+  end
 
-      return {"ID"=> @slack_id, "Name" => @name, "Real Name" => @real_name}
-
-    end
 end
 #
 # lisa = User.new("sfhjdhf", "31212", "lisa matt")

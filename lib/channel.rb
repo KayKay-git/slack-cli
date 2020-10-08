@@ -38,4 +38,7 @@ class Channel < Recipient
     return user_info_array
   end
 
+  def details
+    return {"Name"=> @name, "ID" => @slack_id, "Topic" => @topic, "Member Count" => @member_count}
+  end
 end

@@ -20,10 +20,4 @@ class Recipient
 
   end
 
-  # def self.validate_id(id)
-  #   if id.nil? || id.empty?
-  #     raise ArgumentError, 'ID cannot be blank'
-  #   end
-  # end
-
 end
