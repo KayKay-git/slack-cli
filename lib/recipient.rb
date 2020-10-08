@@ -17,6 +17,8 @@ class Recipient
         token: ENV['SLACK_TOKEN']
     }
     response = HTTParty.get(url, query: query_paramaters)
+    #sleep(1)
+    # why does this cause program to crash? no implict conversiton of string to integer
 
   end
 

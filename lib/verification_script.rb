@@ -27,7 +27,3 @@ end
 
 tp user_info_array
 
-
-
-
-

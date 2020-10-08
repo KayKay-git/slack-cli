@@ -21,7 +21,6 @@ class User < Recipient
     user_info_array = []
 
     response["members"].each do |member|
-      #sleep(0.5)
       username = member["name"]
       real_name = member["real_name"]
       slack_id = member["id"]
@@ -41,4 +40,4 @@ end
 # lisa = User.new("sfhjdhf", "31212", "lisa matt")
 # pp lisa.user_details
 
-ap User.list
+#ap User.list

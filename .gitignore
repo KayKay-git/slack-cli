@@ -5,4 +5,4 @@
 # Ignore environemnt variables
 test/.env
 
-lib/.env
+.env
