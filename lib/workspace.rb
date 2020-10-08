@@ -71,7 +71,7 @@ class Workspace
     response = HTTParty.post(url, body: params)
     #puts response
 
-    
+
     if response["ok"] != true
       raise StandardError, "Error #{response.code}: #{response.message}"
     else

@@ -28,7 +28,7 @@ class User < Recipient
       user_info_array << User.new(username, slack_id, real_name )
     end
 
-    return  user_info_array
+    return user_info_array
   end
 
   def details
@@ -40,4 +40,4 @@ end
 # lisa = User.new("sfhjdhf", "31212", "lisa matt")
 # pp lisa.user_details
 
-#ap User.list
+ap User.list
