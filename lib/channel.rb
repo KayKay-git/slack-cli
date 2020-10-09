@@ -25,7 +25,6 @@ class Channel < Recipient
     user_info_array = []
 
     response["channels"].each do |channel|
-      #sleep(0.5)
       name = channel["name"]
       slack_id = channel["id"]
       topic = channel["purpose"]["value"]

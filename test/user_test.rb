@@ -1,7 +1,7 @@
 require_relative 'test_helper'
 
 #class methods are prefixed with a dot (".add"), and instance methods with a dash ("#add").
-describe "#initialize" do
+describe "User #initialize" do
   before do
     @test_case = User.new('Ariel','UH1234', 'Ariel Jones')
   end
@@ -21,7 +21,7 @@ describe "#initialize" do
     end
 end
 
-describe '.self.list' do
+describe 'User .self.list' do
   before do
     VCR.use_cassette("users_list") do
       @test_array = User.list
@@ -41,7 +41,7 @@ describe '.self.list' do
 
 end
 
-describe '#details' do
+describe 'User #details' do
   before do
     @new_user = User.new('Ariel','UH1234', 'Ariel Jones')
   end
