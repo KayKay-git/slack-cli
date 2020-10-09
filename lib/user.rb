@@ -16,7 +16,7 @@ class User < Recipient
 
   def self.list
 
-    response = self.get("https://slack.com/api/users.list")
+    response = User.get("https://slack.com/api/users.list")
 
     user_info_array = []
 
@@ -32,12 +32,14 @@ class User < Recipient
   end
 
   def details
+    #is it better to format as string?
+    #return "ID: #{@slack_id}, Name: #{@name}, Real Name: #{@real_name}"
     return {"ID"=> @slack_id, "Name" => @name, "Real Name" => @real_name}
   end
 
 end
 #
-# lisa = User.new("sfhjdhf", "31212", "lisa matt")
-# pp lisa.details
+#  lisa = User.new("sfhjdhf", "31212", "lisa matt")
+# puts lisa.details
 
 #ap User.list

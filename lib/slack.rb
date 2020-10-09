@@ -19,7 +19,6 @@ def main
 
   exit_loop = false
   until(exit_loop)
-    puts ''
     puts 'Please select an option from below:'.magenta
     puts '1. list users'.magenta
     puts '2. list channels'.magenta
@@ -53,14 +52,28 @@ def main
       puts "Selected Channel: #{workspace.selected.name}".blue
     when 'details', 'detail', "5"
       puts "Here are the details..."
-      puts workspace.details
+      puts workspace.details  #check later
 
     when 'send message', 'message', "6"
-      #puts "What is the Name of Slack ID of the person you would like to message?"
-      #message_to = gets.chomp
-      #puts "What is the message you would like to send?"
-      #
-      workspace.send_message
+      message = ""
+      if workspace.selected
+        while message.empty?
+          puts "Please type in the message you would like to send.".light_blue
+          print "Message:".yellow
+          message = gets.chomp
+        end
+      else
+        puts "Please select a user or a channel"
+        next
+      end
+
+      begin
+        if workspace.send_message(message)
+          puts "Your message \"#{message}\" was successfully sent to #{workspace.selected.slack_id}!".light_magenta
+        end
+      rescue StandardError => error
+        puts error.message
+      end
 
     when 'quit', 'q', "7"
       puts 'Thank you for using the Ada Slack. Have a good day!'.blue
@@ -68,7 +81,6 @@ def main
     else
       puts "Invalid input, try again!\n".red
     end
-    # puts "What would you like to do next?\n".blue
   end
 end
 

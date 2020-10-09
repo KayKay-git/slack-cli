@@ -29,6 +29,12 @@ describe 'User' do
       expect(@test_case.slack_id).must_equal @slack_id_test
       expect(@test_case.real_name).must_equal @real_name_test
     end
+
+    it 'should respond to variable names ' do
+      [:name, :slack_id, :real_name].each do |variable_name|
+        expect(@test_case).must_respond_to variable_name
+      end
+    end
   end
 end
 
@@ -51,6 +57,9 @@ describe 'User' do
       #is it worth going through all of them or just a few
     end
 
+    it 'array length should be greater than 0' do
+      expect(@test_array.length).must_be:>,0
+    end
   end
 end
 
@@ -62,6 +71,11 @@ describe 'User' do
 
     it 'should return a hash' do
       expect(@new_user.details).must_be_instance_of Hash
+    end
+
+    it 'should return accurate details in hash' do
+      #passes test, but no hash curly braces?
+      expect(@new_user.details).must_equal "ID"=> "UH1234", "Name" => "Ariel" , "Real Name" => "Ariel Jones"
     end
   end
 end

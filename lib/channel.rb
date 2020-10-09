@@ -20,7 +20,7 @@ class Channel < Recipient
 
   def self.list
 
-    response = self.get("https://slack.com/api/conversations.list")
+    response = Channel.get("https://slack.com/api/conversations.list")
 
     user_info_array = []
 

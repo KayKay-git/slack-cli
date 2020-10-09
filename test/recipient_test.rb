@@ -16,5 +16,12 @@ describe 'Recipient' do
       expect(@new_recipient.name).must_equal @name_test
       expect(@new_recipient.slack_id).must_equal @slack_id_test
     end
+
+    it 'should respond to variable names ' do
+      [:name, :slack_id].each do |variable_name|
+        expect(@new_recipient).must_respond_to variable_name
+      end
+    end
+
   end
 end

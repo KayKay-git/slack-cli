@@ -37,6 +37,13 @@ describe 'Channel' do
       expect(@test_channel.topic).must_equal @topic
       expect(@test_channel.member_count).must_equal @member_count
     end
+
+    it 'should respond to variable names ' do
+      [:name, :slack_id, :topic, :member_count].each do |variable_name|
+        expect(@test_channel).must_respond_to variable_name
+      end
+    end
+
   end
 end
 
@@ -58,6 +65,10 @@ describe 'Channel' do
       end
     end
 
+    it 'array length should be greater than 0' do
+      expect(@test_channel_array.length).must_be:>,0
+    end
+
   end
 end
 
@@ -69,6 +80,11 @@ describe 'Channel' do
 
     it 'should return a hash' do
       expect(@new_channel.details).must_be_instance_of Hash
+    end
+
+    it 'should return accurate details in hash' do
+      #passes test, without hash curly braces?
+      expect(@new_channel.details).must_equal "Name"=> 'general', "ID" => 'UG9588', "Topic" => 'talking', "Member Count" => 150
     end
 
   end

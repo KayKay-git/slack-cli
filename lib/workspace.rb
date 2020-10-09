@@ -14,8 +14,6 @@ class Workspace
     @selected = nil
   end
 
-  #also methods to send http request, lists, sending messsages, getting details ?
-
   def select_user(user_name_or_id)
     user_name_or_id = user_name_or_id.downcase
     @selected = @users.find do |user|
@@ -48,34 +46,24 @@ class Workspace
     end
   end
 
-  def send_message
-    message = ''
-    if @selected != nil
-      until !message.empty?
-        puts "Please type in the message you would like to send.".light_blue
-        print "Message:".yellow
-        message = gets.chomp
-      end
-    else
-      puts "Please select a user or a channel"
-      return
+  def send_message(message)
+    if @selected == nil
+      return false
     end
 
-      url = "https://slack.com/api/chat.postMessage"
-      params = {
-          token: ENV['SLACK_TOKEN'],
-          channel: @selected.slack_id,
-          text: message
-      }
+    url = "https://slack.com/api/chat.postMessage"
+    params = {
+        token: ENV['SLACK_TOKEN'],
+        channel: @selected.slack_id,
+        text: message
+    }
 
     response = HTTParty.post(url, body: params)
-    #puts response
-
-
     if response["ok"] != true
       raise StandardError, "Error #{response.code}: #{response.message}"
     else
-      puts "Your message \"#{message}\" was successfully sent to #{@selected.slack_id}!".light_magenta
+      return true
     end
   end
 end
+
