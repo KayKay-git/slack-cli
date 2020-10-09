@@ -6,40 +6,53 @@ describe "#initialize" do
     @test_case = User.new('Ariel','UH1234', 'Ariel Jones')
   end
 
-  context 'given a new User instance' do
-    it "should return accurate user info" do
+    it "given a new User instance, should return accurate user info" do
       expect(@test_case).must_be_instance_of User
       expect(@test_case.name).must_equal 'Ariel'
       expect(@test_case.slack_id).must_equal 'UH1234'
       expect(@test_case.real_name).must_equal 'Ariel Jones'
     end
-  end
-  context ' user instance variables' do
-    it "should be an instance of string" do
+
+
+    it "user instance variables, should be an instance of string" do
       expect(@test_case.name).must_be_instance_of String
       expect(@test_case.slack_id).must_be_instance_of String
       expect(@test_case.real_name).must_be_instance_of String
     end
-  end
 end
-#
-# describe '.self.list' do
-#   it "should return array users/members" do
-#     VCR.use_cassette("???") do
-#       @test_array = User.list
-#     end
-#
-#     # how can i use the vcr to test if get method response is good?
-#
-#   end
-#
-#   it "should return array of new User Instances" do
-#     before do
-#       @test_array = User.list
-#     end
-#   end
-# end
-#
-# describe '#details' do
-#
-# end
+
+describe '.self.list' do
+  before do
+    VCR.use_cassette("users_list") do
+      @test_array = User.list
+     end
+  end
+
+  it "should return array of users/members" do
+    expect(@test_array).must_be_instance_of Array
+  end
+
+  it "each user/member in array should be an instance of User" do
+    @test_array.each do |member|
+      expect(member).must_be_instance_of User
+    end
+    #is it worth going through all of them or just a few
+  end
+
+end
+
+describe '#details' do
+  before do
+    @new_user = User.new('Ariel','UH1234', 'Ariel Jones')
+  end
+
+  it 'should return a hash' do
+    expect(@new_user.details).must_be_instance_of Hash
+  end
+
+  # it 'values should be stored as strings' do
+  #   expect(@new_user.details).must_equal {"ID"=>@new_user.slack_id,"Name"=>@new_user.name, "Real Name"=>@new_user.real_name
+  # end
+end
+
+

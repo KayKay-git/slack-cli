@@ -1,6 +1,6 @@
 require 'httparty'
 require 'dotenv/load'
-require 'awesome_print'
+#require 'awesome_print'
 
 class Recipient
   attr_reader :name, :slack_id
@@ -19,7 +19,7 @@ class Recipient
     response = HTTParty.get(url, query: query_paramaters)
     #sleep(1)
     # why does this cause program to crash? no implict conversiton of string to integer
-
+    return response
   end
 
 end

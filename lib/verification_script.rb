@@ -1,7 +1,7 @@
 require 'httparty'
 require 'dotenv/load'
 require 'awesome_print'
-require 'table_print'
+#require 'table_print'
 
 #verify slack token is working
 url = "https://slack.com/api/users.list"
@@ -25,5 +25,5 @@ response["members"].each do |member|
   user_info_array << user_info_hash
 end
 
-tp user_info_array
+#tp user_info_array
 

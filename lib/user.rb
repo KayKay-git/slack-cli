@@ -37,7 +37,7 @@ class User < Recipient
 
 end
 #
-# lisa = User.new("sfhjdhf", "31212", "lisa matt")
-# pp lisa.user_details
+lisa = User.new("sfhjdhf", "31212", "lisa matt")
+pp lisa.details
 
-ap User.list
+#ap User.list
