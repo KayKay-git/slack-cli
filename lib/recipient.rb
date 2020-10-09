@@ -1,6 +1,8 @@
 require 'httparty'
 require 'dotenv/load'
-#require 'awesome_print'
+
+class SlackAPIError < StandardError
+end
 
 class Recipient
   attr_reader :name, :slack_id
@@ -10,6 +12,16 @@ class Recipient
     @name = name
     @slack_id = slack_id
 
+    raise ArgumentError,'Input cannot be nil' if name.nil? || slack_id.nil?
+    raise ArgumentError,'Input cannot be blank' if name.empty? || slack_id.empty?
+  end
+
+  def details
+    raise SlackAPIError, 'Implement me in a child class!'
+  end
+
+  def self.list
+    raise SlackAPIError, 'Implement me in a child class!'
   end
 
   def self.get(url)
@@ -17,8 +29,12 @@ class Recipient
         token: ENV['SLACK_TOKEN']
     }
     response = HTTParty.get(url, query: query_paramaters)
-    #sleep(1)
-    # why does this cause program to crash? no implict conversiton of string to integer
+    sleep(1)
+
+    unless response['ok'] && response.code == 200
+      raise SlackAPIError, "Error: #{response['error']}, #{response.code}, #{response.message}"
+    end
+
     return response
   end
 

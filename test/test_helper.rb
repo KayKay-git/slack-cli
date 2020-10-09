@@ -19,11 +19,6 @@ require_relative '../lib/workspace'
 
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
-# VCR.configure do |config|
-#   config.cassette_library_dir = "test/cassettes"
-#   config.hook_into :webmock
-# end
-
 VCR.configure do |config|
   config.cassette_library_dir = "test/cassettes" # folder where casettes will be located
   config.hook_into :webmock # tie into this other tool called webmock

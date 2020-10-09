@@ -1,6 +1,6 @@
 require 'httparty'
 require 'dotenv/load'
-require 'awesome_print'
+#require 'awesome_print'
 #require 'table_print'
 
 #verify slack token is working
@@ -10,12 +10,8 @@ query_paramaters = {
 }
 response = HTTParty.get(url, query: query_paramaters)
 
-
 user_info_array = []
 response["members"].each do |member|
-  #username
-  #realname
-  #slack_id
   user_info_hash = {
       username: member["name"],
       real_name: member["real_name"],

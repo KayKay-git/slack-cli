@@ -36,23 +36,31 @@ def main
       tp workspace.users, 'name','slack_id', 'real_name'
     when 'list channels', 'channels', "2"
       tp workspace.channels, 'name', 'slack_id', 'topic', 'member_count'
-
     when 'select user', "3"
       puts 'Please enter the Username or Slack ID'
       print 'Select User:'.yellow
       username_or_id = gets.chomp.downcase
-      workspace.select_user(username_or_id)
-      puts "Selected User: #{workspace.selected.name}".blue
-
+      if workspace.select_user(username_or_id)
+        puts "Selected User: #{workspace.selected.name}".blue
+      else
+        puts "User Not found. Please Try Again"
+      end
     when 'select channel', "4"
       puts 'Please enter the Name or Slack ID'
       print 'Select Channel:'.yellow
       name_or_id = gets.chomp.downcase
-      workspace.select_channel(name_or_id)
-      puts "Selected Channel: #{workspace.selected.name}".blue
+      if workspace.select_channel(name_or_id)
+        puts "Selected Channel: #{workspace.selected.name}".blue
+      else
+        puts "Channel Not found. Please Try Again"
+      end
     when 'details', 'detail', "5"
-      puts "Here are the details..."
-      puts workspace.details  #check later
+      if workspace.details
+        puts "Here are the details...".light_cyan
+      puts workspace.details
+      else
+        puts "Please choose a user or channel"
+      end
 
     when 'send message', 'message', "6"
       message = ""
@@ -71,7 +79,7 @@ def main
         if workspace.send_message(message)
           puts "Your message \"#{message}\" was successfully sent to #{workspace.selected.slack_id}!".light_magenta
         end
-      rescue StandardError => error
+      rescue SlackAPIError => error
         puts error.message
       end
 

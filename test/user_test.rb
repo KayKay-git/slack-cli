@@ -36,9 +36,8 @@ describe 'User' do
       end
     end
   end
-end
 
-describe 'User' do
+
   describe '.self.list' do
     before do
       VCR.use_cassette("users_list") do
@@ -61,21 +60,19 @@ describe 'User' do
       expect(@test_array.length).must_be:>,0
     end
   end
-end
 
-describe 'User' do
   describe '#details' do
     before do
       @new_user = User.new('Ariel','UH1234', 'Ariel Jones')
     end
 
-    it 'should return a hash' do
-      expect(@new_user.details).must_be_instance_of Hash
+    it 'should return a string' do
+      expect(@new_user.details).must_be_instance_of String
     end
 
-    it 'should return accurate details in hash' do
+    it 'should return accurate details in String' do
       #passes test, but no hash curly braces?
-      expect(@new_user.details).must_equal "ID"=> "UH1234", "Name" => "Ariel" , "Real Name" => "Ariel Jones"
+      expect(@new_user.details).must_equal "ID: UH1234\nName: Ariel\nReal Name: Ariel Jones"
     end
   end
 end

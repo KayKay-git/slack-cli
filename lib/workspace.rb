@@ -20,20 +20,12 @@ class Workspace
       valid_users = [user.name.downcase, user.slack_id.downcase, user.real_name.downcase]
       valid_users.include?(user_name_or_id)
     end
-
-    if @selected == nil
-      #raise ArgumentError, "The user could not be found."
-      puts "The user could not be found."
-      return
-    end
   end
 
   def select_channel(name_or_id)
     name_or_id = name_or_id.downcase
-    @selected = @channels.find { |channel| [channel.name.downcase, channel.slack_id.downcase].include?(name_or_id) }
-
-    if @selected == nil
-      raise ArgumentError, "That channel could not be found."
+    unless name_or_id.nil?
+      @selected = @channels.find { |channel| [channel.name.downcase, channel.slack_id.downcase].include?(name_or_id) }
     end
   end
 
@@ -41,13 +33,12 @@ class Workspace
     if @selected != nil
       return @selected.details
     else
-      puts "Please choose a user or channel"
-      return
+      return nil
     end
   end
 
   def send_message(message)
-    if @selected == nil
+    if @selected.nil?
       return false
     end
 
@@ -59,11 +50,12 @@ class Workspace
     }
 
     response = HTTParty.post(url, body: params)
-    if response["ok"] != true
-      raise StandardError, "Error #{response.code}: #{response.message}"
-    else
-      return true
+
+    unless response['ok'] && response.code == 200
+      raise SlackAPIError, "Error: #{response['error']}, #{response.code}, #{response.message}"
     end
+
+    return true
   end
 end
 

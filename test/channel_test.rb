@@ -45,9 +45,7 @@ describe 'Channel' do
     end
 
   end
-end
 
-describe 'Channel' do
   describe '.self.list' do
     before do
       VCR.use_cassette("channels_list") do
@@ -70,22 +68,18 @@ describe 'Channel' do
     end
 
   end
-end
 
-describe 'Channel' do
   describe '#details' do
     before do
       @new_channel = Channel.new('general','UG9588', 'talking',150)
     end
 
-    it 'should return a hash' do
-      expect(@new_channel.details).must_be_instance_of Hash
+    it 'should return a string' do
+      expect(@new_channel.details).must_be_instance_of String
     end
 
-    it 'should return accurate details in hash' do
-      #passes test, without hash curly braces?
-      expect(@new_channel.details).must_equal "Name"=> 'general', "ID" => 'UG9588', "Topic" => 'talking', "Member Count" => 150
+    it 'should return accurate details in String' do
+      expect(@new_channel.details).must_equal "Name: general\nID: UG9588\nTopic: talking\nMember Count: 150"
     end
-
   end
 end
