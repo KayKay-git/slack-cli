@@ -43,7 +43,7 @@ def main
       if workspace.select_user(username_or_id)
         puts "Selected User: #{workspace.selected.name}".blue
       else
-        puts "User Not found. Please Try Again"
+        puts 'User Not found. Please Try Again'
       end
     when 'select channel', "4"
       puts 'Please enter the Name or Slack ID'
@@ -54,7 +54,7 @@ def main
       else
         puts "Channel Not found. Please Try Again"
       end
-    when 'details', 'detail', "5"
+    when 'details', 'detail', '5'
       if workspace.details
         puts "Here are the details...".light_cyan
       puts workspace.details
@@ -62,7 +62,7 @@ def main
         puts "Please choose a user or channel"
       end
 
-    when 'send message', 'message', "6"
+    when 'send message', 'message', '6'
       message = ""
       if workspace.selected
         while message.empty?
@@ -91,6 +91,4 @@ def main
     end
   end
 end
-
-#pp String.colors
 main if __FILE__ == $PROGRAM_NAME

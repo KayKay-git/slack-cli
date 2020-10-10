@@ -8,20 +8,18 @@ class Recipient
   attr_reader :name, :slack_id
 
   def initialize(name, slack_id)
-
     @name = name
     @slack_id = slack_id
-
-    raise ArgumentError,'Input cannot be nil' if name.nil? || slack_id.nil?
-    raise ArgumentError,'Input cannot be blank' if name.empty? || slack_id.empty?
+    raise ArgumentError, 'Input cannot be nil' if name.nil? || slack_id.nil?
+    raise ArgumentError, 'Input cannot be blank' if name.empty? || slack_id.empty?
   end
 
   def details
-    raise SlackAPIError, 'Implement me in a child class!'
+    raise NotImplementedError, 'Implement me in a child class!'
   end
 
   def self.list
-    raise SlackAPIError, 'Implement me in a child class!'
+    raise NotImplementedError, 'Implement me in a child class!'
   end
 
   def self.get(url)
@@ -34,8 +32,6 @@ class Recipient
     unless response['ok'] && response.code == 200
       raise SlackAPIError, "Error: #{response['error']}, #{response.code}, #{response.message}"
     end
-
     return response
   end
-
 end

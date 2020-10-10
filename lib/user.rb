@@ -13,7 +13,6 @@ class User < Recipient
     @real_name = real_name
   end
 
-
   def self.list
     response = User.get("https://slack.com/api/users.list")
 
@@ -21,7 +20,6 @@ class User < Recipient
       username = member["name"]
       real_name = member["real_name"]
       slack_id = member["id"]
-
       User.new(username, slack_id, real_name)
     end
 
@@ -31,10 +29,4 @@ class User < Recipient
   def details
     return "ID: #{@slack_id}\nName: #{@name}\nReal Name: #{@real_name}"
   end
-
 end
-
-#  lisa = User.new("sfhjdhf", "31212", "lisa matt")
-# puts lisa.details
-
-#ap User.list

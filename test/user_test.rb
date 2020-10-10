@@ -53,7 +53,6 @@ describe 'User' do
       @test_array.each do |member|
         expect(member).must_be_instance_of User
       end
-      #is it worth going through all of them or just a few
     end
 
     it 'array length should be greater than 0' do

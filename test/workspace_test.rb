@@ -20,11 +20,6 @@ describe "workspace tests" do
       @workspace_user.select_user('slackbot')
       expect(@workspace_user.selected).must_be_instance_of User
     end
-
-    # it 'should return nil if User not found' do
-    #   @workspace_user.select_user(nil)
-    #   expect(@workspace_user.selected).must_be_nil
-    # end
   end
 
   describe '#select_channel' do

@@ -1,6 +1,5 @@
 require_relative 'test_helper'
 
-
 #class methods are prefixed with a dot (".add"), and instance methods with a dash ("#add").
 describe 'Channel' do
   describe "#initialize" do
