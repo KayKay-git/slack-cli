@@ -70,7 +70,6 @@ describe 'User' do
     end
 
     it 'should return accurate details in String' do
-      #passes test, but no hash curly braces?
       expect(@new_user.details).must_equal "ID: UH1234\nName: Ariel\nReal Name: Ariel Jones"
     end
   end

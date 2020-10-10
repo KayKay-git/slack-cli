@@ -28,17 +28,14 @@ describe "workspace tests" do
         @workspace_channel = Workspace.new
       end
     end
-
     it 'selected user should be an instance of channel' do
       @workspace_channel.select_channel('general')
       expect(@workspace_channel.selected).must_be_instance_of Channel
     end
-
   end
 
 
   describe '#details' do
-
     it "will get channel details" do
       VCR.use_cassette("create_workspace") do
         workspace = Workspace.new
@@ -47,7 +44,6 @@ describe "workspace tests" do
         expect(details).must_be_instance_of String
       end
     end
-
   end
 
   describe "sends a valid message" do

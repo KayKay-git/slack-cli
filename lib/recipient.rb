@@ -18,10 +18,6 @@ class Recipient
     raise NotImplementedError, 'Implement me in a child class!'
   end
 
-  def self.list
-    raise NotImplementedError, 'Implement me in a child class!'
-  end
-
   def self.get(url)
     query_paramaters = {
         token: ENV['SLACK_TOKEN']

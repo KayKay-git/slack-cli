@@ -50,14 +50,7 @@ describe 'Recipient' do
   describe 'details' do
     it 'should Raise error if implemented in recipient class ' do
       recipient_new = Recipient.new('bot', 'U545')
-      expect(recipient_new.details).must_raise NotImplementedError
-    end
-  end
-  
-  describe 'recipient.get' do
-    it 'should Raise error if implemented in recipient class ' do
-      recipient_new = Recipient.new('bot', 'U545')
-      expect(recipient_new.list).must_raise NotImplementedError
+      expect{recipient_new.details}.must_raise NotImplementedError
     end
   end
 end

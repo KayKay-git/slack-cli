@@ -59,7 +59,7 @@ def main
         puts "Here are the details...".light_cyan
       puts workspace.details
       else
-        puts "Please choose a user or channel"
+        puts 'Please choose a user or channel.'
       end
 
     when 'send message', 'message', '6'
